@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: bookmark-service
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka
+
+  instance:
+    instanceId: ${spring.application.name}:{spring.application.instance_id:${random.value}}
+
+server:
+  port: 0
