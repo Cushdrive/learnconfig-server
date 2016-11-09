@@ -10,7 +10,7 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:1111/eureka
     refresh:
-      interval: 2
+      interval: 3
 
 bookmark-service:
   ribbon:
