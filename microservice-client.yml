@@ -20,6 +20,6 @@ bookmark-service:
   ribbon:
     NIWSServerListClassName: com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList
     DeploymentContextBasedVipAddress: bookmark-service
-    MaxAutoRetries: 1
+    MaxAutoRetries: 0
     MaxAutoRetriesNextServer: 1
     OkToRetryOnAllOperations: true
