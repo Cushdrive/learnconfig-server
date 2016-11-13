@@ -23,5 +23,8 @@ eureka:
 bookmark-service:
   ribbon:
     NIWSServerListClassName: com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList
-    ServerListRefreshInterval: 2000
+    ServerListRefreshInterval: 500
     DeploymentContextBasedVipAddress: bookmark-service
+    MaxAutoRetries: 1
+    MaxAutoRetriesNextServer: 1
+    OkToRetryOnAllOperations: true
