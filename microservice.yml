@@ -4,6 +4,7 @@ spring:
 
 eureka:
   client:
+    preferSameZone: true
     serviceUrl:
       defaultZone: http://localhost:1111/eureka
     healthcheck:
