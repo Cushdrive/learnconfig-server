@@ -11,19 +11,13 @@ eureka:
       defaultZone: http://localhost:1111/eureka
     healthcheck:
       enabled: true
-    initial-instance-info-replication-interval-seconds: 0
-    instance-info-replication-interval-seconds: 1
-    registry-fetch-interval-seconds: 1
   instance:
     prefer-ip-address: true
-    lease-renewal-interval-in-seconds: 1
-    lease-expiration-duration-in-seconds: 2
 
 
 bookmark-service:
   ribbon:
     NIWSServerListClassName: com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList
-    ServerListRefreshInterval: 500
     DeploymentContextBasedVipAddress: bookmark-service
     MaxAutoRetries: 1
     MaxAutoRetriesNextServer: 1
