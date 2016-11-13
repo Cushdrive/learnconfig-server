@@ -8,6 +8,10 @@ eureka:
       defaultZone: http://localhost:1111/eureka
     healthcheck:
       enabled: true
+    initial-instance-info-replication-interval-seconds: 0
+    instance-info-replication-interval-seconds: 1
+    registry-fetch-interval-seconds: 1
+
 
   instance:
     instanceId: ${spring.application.name}:{spring.application.instance_id:${random.value}}
