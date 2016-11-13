@@ -4,11 +4,16 @@ spring:
 
 eureka:
   client:
+    preferSameZone: true
     serviceUrl:
       defaultZone: http://localhost:1111/eureka
+    healthcheck:
+      enabled: true
+
 
   instance:
     instanceId: ${spring.application.name}:{spring.application.instance_id:${random.value}}
+    prefer-ip-address: true
 
 server:
   port: 0

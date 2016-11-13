@@ -7,13 +7,20 @@ server:
 
 eureka:
   client:
+    preferSameZone: true
     serviceUrl:
       defaultZone: http://localhost:1111/eureka
-    refresh:
-      interval: 2
+    healthcheck:
+      enabled: true
+  instance:
+    prefer-ip-address: true
+
 
 bookmark-service:
   ribbon:
     NIWSServerListClassName: com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList
-    ServerListRefreshInterval: 2000
     DeploymentContextBasedVipAddress: bookmark-service
+    MaxAutoRetries: 0
+    MaxAutoRetriesNextServer: 1
+    OkToRetryOnAllOperations: true
+    ServerListRefreshInterval: 2000
