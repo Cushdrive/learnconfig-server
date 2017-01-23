@@ -19,7 +19,8 @@ security:
   oauth2:
     client:
       accessTokenUri: https://bax-poc.auth0.com/oauth/token
-      # Comment out because a custom rest template is being provided. clientId: dGw3NGiSRwVn4mUcyJFwJKuxjI1M1zbi
+      # Leave empty because a custom rest template is being provided.
+      clientId:
       clientSecret: KVYprL0DWKBDmgMjQi3DaMO1THCcpwadLGCidmqTAbTe-EyVvwL6UYZqo0nFrpyu
     resource:
       jwt:
