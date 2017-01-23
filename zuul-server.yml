@@ -10,11 +10,16 @@ zuul:
       stripPrefix: false
       sensitive-headers:
 
+application:
+  customProps:
+    oauth2:
+      clientId: dGw3NGiSRwVn4mUcyJFwJKuxjI1M1zbi
+
 security:
   oauth2:
     client:
       accessTokenUri: https://bax-poc.auth0.com/oauth/token
-      clientId: dGw3NGiSRwVn4mUcyJFwJKuxjI1M1zbi
+      # Comment out because a custom rest template is being provided. clientId: dGw3NGiSRwVn4mUcyJFwJKuxjI1M1zbi
       clientSecret: KVYprL0DWKBDmgMjQi3DaMO1THCcpwadLGCidmqTAbTe-EyVvwL6UYZqo0nFrpyu
     resource:
       jwt:
