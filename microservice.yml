@@ -30,3 +30,7 @@ security:
 
 server:
   port: 0
+
+logging:
+  level:
+    org.springframework: 'DEBUG'
