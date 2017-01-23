@@ -1,6 +1,6 @@
 spring:
   application:
-    name: bookmark-service
+    name: treatment-service
 
 eureka:
   client:
