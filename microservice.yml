@@ -1,15 +1,3 @@
-spring:
-  application:
-    name: treatment-service
-
-spring:
-  cloud:
-    consul:
-      host: localhost
-      port: 8500
-      discovery:
-          instanceId: ${spring.application.name}:{spring.application.instance_id:${random.value}}
-
 security:
   user:
   oauth2:
