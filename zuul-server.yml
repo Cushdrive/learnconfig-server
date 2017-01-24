@@ -39,6 +39,26 @@ ribbon:
   eureka:
     enabled: true
 
+hystrix:
+  threadpool:
+    default:
+      # Maximum number of concurrent requests when using thread pools (Default: 10)
+      coreSize: 10
+      # Maximum LinkedBlockingQueue size - -1 for using SynchronousQueue (Default: -1)
+      maxQueueSize: -1
+      # Queue size rejection threshold (Default: 5)
+      queueSizeRejectionThreshold: 5
+  command:
+    default:
+      circuitBreaker:
+        sleepWindowInMilliseconds: 30000
+        requestVolumeThreshold: 20
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 10000
+
 eureka:
   client:
     serviceUrl:
