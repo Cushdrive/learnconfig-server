@@ -2,15 +2,16 @@ spring:
   application:
     name: treatment-service
 
-eureka:
-  client:
-    preferSameZone: true
-    serviceUrl:
-      defaultZone: http://localhost:1111/eureka
-    healthcheck:
-      enabled: true
+spring:
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+          instanceId: ${spring.application.name}:{spring.application.instance_id:${random.value}}
 
 security:
+  user:
   oauth2:
     resource:
       jwt:
@@ -23,10 +24,6 @@ security:
           SnSeQnw5sAKJUCLLx/zDVH6ALbIjsT7/aZY/N6e5ByQU4yz+TJHZ7wKruM4jKVD3
           PsSW7TM339qmdsxVtulyGPbaRn6Swsx4kQIDAQAB
           -----END RSA PUBLIC KEY-----
-
-  instance:
-    instanceId: ${spring.application.name}:{spring.application.instance_id:${random.value}}
-    prefer-ip-address: true
 
 server:
   port: 0
