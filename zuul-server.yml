@@ -69,7 +69,7 @@ treatment-service:
     ServerListRefreshInterval: 2000
 
 server:
-    port: 8890
+    port: 8891
 
 logging:
   level:
