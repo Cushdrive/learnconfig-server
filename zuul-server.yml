@@ -68,6 +68,9 @@ treatment-service:
     OkToRetryOnAllOperations: true
     ServerListRefreshInterval: 2000
 
+server:
+    port: 8890
+
 logging:
   level:
     org.springframework: 'DEBUG'
