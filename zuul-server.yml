@@ -9,6 +9,9 @@ zuul:
       serviceId: treatment-service
       stripPrefix: false
       sensitive-headers:
+    ui:
+      path: /ui/**
+      url: http://localhost:3000/
 
 application:
   customProps:
