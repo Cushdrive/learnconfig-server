@@ -10,8 +10,9 @@ zuul:
       stripPrefix: false
       sensitive-headers:
     ui:
+      stripPrefix: false
       path: /ui/**
-      url: http://localhost:3000/
+      url: http://localhost:3000/ui/
 
 application:
   customProps:
