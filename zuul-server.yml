@@ -12,7 +12,7 @@ zuul:
     ui:
       stripPrefix: false
       path: /ui/**
-      serviceId: ui-service
+      url: http://localhost:3000/
 
 application:
   customProps:
