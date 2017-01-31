@@ -9,13 +9,9 @@ zuul:
       serviceId: treatment-service
       stripPrefix: false
       sensitive-headers:
-    ui:
+    ui: #This is the default route. ORDER IS IMPORTANT AND THIS SHOULD GO LAST IN THE LIST OF ROUTES.
       stripPrefix: false
-      path: /ui/**
-      url: http://localhost:3000/
-    static:
-      stripPrefix: false
-      path: /static/**
+      path: /**
       url: http://localhost:3000/
 
 application:
