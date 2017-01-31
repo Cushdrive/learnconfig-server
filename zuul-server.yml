@@ -9,6 +9,10 @@ zuul:
       serviceId: treatment-service
       stripPrefix: false
       sensitive-headers:
+    health:
+      path: /health*
+      url: http://localhost:8890
+      stripPrefix: false
     ui: #This is the default route. ORDER IS IMPORTANT AND THIS SHOULD GO LAST IN THE LIST OF ROUTES.
       stripPrefix: false
       path: /**
