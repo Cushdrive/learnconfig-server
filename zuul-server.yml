@@ -12,7 +12,7 @@ zuul:
     ui:
       stripPrefix: false
       path: /ui/**
-      url: http://localhost:3000/
+      serviceId: ui-service
 
 application:
   customProps:
@@ -71,6 +71,10 @@ treatment-service:
     MaxAutoRetriesNextServer: 1
     OkToRetryOnAllOperations: true
     ServerListRefreshInterval: 2000
+
+ui-service:
+  ribbon:
+    listOfServers: localhost:3000
 
 server:
     port: 8890
