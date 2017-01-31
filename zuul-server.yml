@@ -13,6 +13,10 @@ zuul:
       stripPrefix: false
       path: /ui/**
       url: http://localhost:3000/
+    static:
+      stripPrefix: false
+      path: /static/**
+      url: http://localhost:3000/
 
 application:
   customProps:
