@@ -13,6 +13,7 @@ zuul:
       stripPrefix: false
       path: /**
       url: http://localhost:3000/
+      sensitive-headers:
 
 application:
   customProps:
