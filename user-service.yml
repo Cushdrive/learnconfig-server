@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    driver-class-name: org.postgresql.Driver
+    driverClassName: org.postgresql.Driver
     max-active: 10
     max-idle: 8
     max-wait: 10000
