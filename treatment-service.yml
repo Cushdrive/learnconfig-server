@@ -1,5 +1,34 @@
+server:
+    port: 8892
+
+spring:
+  datasource:
+    url: ${poc.db.url}
+    username: ${poc.db.username}
+    password: ${poc.db.password}
+    driver-class-name: org.postgresql.Driver
+    max-active: 10
+    max-idle: 8
+    max-wait: 10000
+    min-evictable-idle-time-millis: 1000
+    min-idle: 8
+    time-between-eviction-runs-millis: 1
+  cloud:
+    consul:
+      discovery:
+        instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+        healthCheckInterval: 30s
+
+user-service:
+  ribbon:
+    NIWSServerListClassName: com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList
+    DeploymentContextBasedVipAddress: user-service
+    MaxAutoRetries: 0
+    MaxAutoRetriesNextServer: 1
+    OkToRetryOnAllOperations: true
+    ServerListRefreshInterval: 2000
+
 security:
-  user:
   oauth2:
     resource:
       jwt:
@@ -12,10 +41,4 @@ security:
           SnSeQnw5sAKJUCLLx/zDVH6ALbIjsT7/aZY/N6e5ByQU4yz+TJHZ7wKruM4jKVD3
           PsSW7TM339qmdsxVtulyGPbaRn6Swsx4kQIDAQAB
           -----END RSA PUBLIC KEY-----
-
-server:
-  port: 0
-
-logging:
-  level:
-    org.springframework: 'DEBUG'
+      #userInfoUri: https://bax-poc.auth0.com/userinfo
