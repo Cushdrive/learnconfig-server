@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-    url: ${poc.db.url}
-    username: ${poc.db.username}
-    password: ${poc.db.password}
+    url: jdbc:postgresql://localhost:5432/GFINFUSION
+    username: postgres
+    password: SYS
     driver-class-name: org.postgresql.Driver
     max-active: 10
     max-idle: 8
