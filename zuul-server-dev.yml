@@ -1,3 +1,6 @@
+server:
+    port: 8890
+
 zuul:
   RibbonRoutingFilter:
     route:
@@ -5,9 +8,14 @@ zuul:
   ignoredServices: '*'
   ignoredPatterns: /health*
   routes:
-    api:
-      path: /api/mylasttreatment*
-      serviceId: treatment-service
+    infusion-service:
+      path: /api/infusion/v1.L/**
+      serviceId: infusion-service-v1.1
+      stripPrefix: false
+      sensitive-headers:
+    treatment-service:
+      path: /api/renal/v1/**
+      serviceId: treatment-service-v1
       stripPrefix: false
       sensitive-headers:
     ui: #This is the default route. ORDER IS IMPORTANT AND THIS SHOULD GO LAST IN THE LIST OF ROUTES.
@@ -16,18 +24,8 @@ zuul:
       url: http://localhost:3000/
       sensitive-headers:
 
-application:
-  customProps:
-    oauth2:
-      clientId: dGw3NGiSRwVn4mUcyJFwJKuxjI1M1zbi
-
 security:
   oauth2:
-    client:
-      accessTokenUri: https://bax-poc.auth0.com/oauth/token
-      # Leave empty because a custom rest template is being provided.
-      clientId:
-      clientSecret: KVYprL0DWKBDmgMjQi3DaMO1THCcpwadLGCidmqTAbTe-EyVvwL6UYZqo0nFrpyu
     resource:
       jwt:
         keyValue: |
@@ -41,9 +39,10 @@ security:
           -----END RSA PUBLIC KEY-----
       #userInfoUri: https://bax-poc.auth0.com/userinfo
 
-ribbon:
-  eureka:
-    enabled: true
+cloud:
+  consul:
+    discovery:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 
 hystrix:
   threadpool:
@@ -65,22 +64,20 @@ hystrix:
           thread:
             timeoutInMilliseconds: 10000
 
-treatment-service:
+treatment-service-v1:
   ribbon:
     NIWSServerListClassName: com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList
-    DeploymentContextBasedVipAddress: treatment-service
+    DeploymentContextBasedVipAddress: treatment-service-v1
     MaxAutoRetries: 0
     MaxAutoRetriesNextServer: 1
     OkToRetryOnAllOperations: true
     ServerListRefreshInterval: 2000
 
-ui-service:
+infusion-service-v1.1:
   ribbon:
-    listOfServers: localhost:3000
-
-server:
-    port: 8890
-
-logging:
-  level:
-    org.springframework: 'DEBUG'
+    NIWSServerListClassName: com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList
+    DeploymentContextBasedVipAddress: infusion-service-v1
+    MaxAutoRetries: 0
+    MaxAutoRetriesNextServer: 1
+    OkToRetryOnAllOperations: true
+    ServerListRefreshInterval: 2000
