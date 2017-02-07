@@ -1,0 +1,86 @@
+zuul:
+  RibbonRoutingFilter:
+    route:
+      disable: true
+  ignoredServices: '*'
+  ignoredPatterns: /health*
+  routes:
+    api:
+      path: /api/mylasttreatment*
+      serviceId: treatment-service
+      stripPrefix: false
+      sensitive-headers:
+    ui: #This is the default route. ORDER IS IMPORTANT AND THIS SHOULD GO LAST IN THE LIST OF ROUTES.
+      stripPrefix: false
+      path: /**
+      url: http://localhost:3000/
+      sensitive-headers:
+
+application:
+  customProps:
+    oauth2:
+      clientId: dGw3NGiSRwVn4mUcyJFwJKuxjI1M1zbi
+
+security:
+  oauth2:
+    client:
+      accessTokenUri: https://bax-poc.auth0.com/oauth/token
+      # Leave empty because a custom rest template is being provided.
+      clientId:
+      clientSecret: KVYprL0DWKBDmgMjQi3DaMO1THCcpwadLGCidmqTAbTe-EyVvwL6UYZqo0nFrpyu
+    resource:
+      jwt:
+        keyValue: |
+          -----BEGIN RSA PUBLIC KEY-----
+          MIIBCgKCAQEA07/4DxKS+vHMDeQMCfhd106LfDkyIGNyZGNH3OhA0o3c0PU7ui20
+          3tZqD5V2oWBxkyqus1j0ZDYl74u79ZpKFTHgoowZcwMYxNjUNqLczJqpkOFXR1Nv
+          dI/5h87rzwsJHKqJ0ntG4kHJmCQl9Wmdi8ZXDLsV+hoQKFKD4w3A8NCO1cnaPQwM
+          DnY4eRYT8N9K6Wb2k8lYzY1NQ9nTijswWFLm8Qp2uyLqtTWbZvn/JaksRdNTv6J6
+          SnSeQnw5sAKJUCLLx/zDVH6ALbIjsT7/aZY/N6e5ByQU4yz+TJHZ7wKruM4jKVD3
+          PsSW7TM339qmdsxVtulyGPbaRn6Swsx4kQIDAQAB
+          -----END RSA PUBLIC KEY-----
+      #userInfoUri: https://bax-poc.auth0.com/userinfo
+
+ribbon:
+  eureka:
+    enabled: true
+
+hystrix:
+  threadpool:
+    default:
+      # Maximum number of concurrent requests when using thread pools (Default: 10)
+      coreSize: 10
+      # Maximum LinkedBlockingQueue size - -1 for using SynchronousQueue (Default: -1)
+      maxQueueSize: -1
+      # Queue size rejection threshold (Default: 5)
+      queueSizeRejectionThreshold: 5
+  command:
+    default:
+      circuitBreaker:
+        sleepWindowInMilliseconds: 30000
+        requestVolumeThreshold: 20
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 10000
+
+treatment-service:
+  ribbon:
+    NIWSServerListClassName: com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList
+    DeploymentContextBasedVipAddress: treatment-service
+    MaxAutoRetries: 0
+    MaxAutoRetriesNextServer: 1
+    OkToRetryOnAllOperations: true
+    ServerListRefreshInterval: 2000
+
+ui-service:
+  ribbon:
+    listOfServers: localhost:3000
+
+server:
+    port: 8890
+
+logging:
+  level:
+    org.springframework: 'DEBUG'
