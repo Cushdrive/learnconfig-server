@@ -81,3 +81,7 @@ infusion-service-v1.1:
     MaxAutoRetriesNextServer: 1
     OkToRetryOnAllOperations: true
     ServerListRefreshInterval: 2000
+
+logging:
+  level:
+    org.springframework: 'DEBUG'
